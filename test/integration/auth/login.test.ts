@@ -22,8 +22,8 @@ describe('POST /v1/login', () => {
   user.role = 'ADMINISTRATOR' as Role;
 
   before(async () => {
-    dbConnection = await dbCreateConnection();
-    userRepository = getRepository(User);
+    dbConnection = await dbCreateConnection('test');
+    userRepository = getRepository(User, 'test');
   });
 
   after(async () => {

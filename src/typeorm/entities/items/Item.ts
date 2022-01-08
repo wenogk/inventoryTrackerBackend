@@ -1,12 +1,12 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
 export enum Categories {
-  TECHNOLOGY = "TECHNOLOGY",
-  KITCHEN = "KITCHEN",
-  PET = "PET",
-  HOME = "HOME",
-  EDUCATION = "EDUCATION",
-  GENERAL = "GENERAL"
+  TECHNOLOGY = 'TECHNOLOGY',
+  KITCHEN = 'KITCHEN',
+  PET = 'PET',
+  HOME = 'HOME',
+  EDUCATION = 'EDUCATION',
+  GENERAL = 'GENERAL',
 }
 
 @Entity('items')
@@ -23,11 +23,11 @@ export class Item {
   name: string;
 
   @Column({
-    type: "enum",
-    enum: Categories  ,
-    default: Categories.GENERAL
+    type: 'enum',
+    enum: Categories,
+    default: Categories.GENERAL,
   })
-  role: Categories;
+  category: Categories;
 
   @Column()
   @CreateDateColumn()

@@ -18,8 +18,8 @@ describe('POST /v1/register', () => {
   user.hashPassword();
 
   before(async () => {
-    dbConnection = await dbCreateConnection();
-    userRepository = getRepository(User);
+    dbConnection = await dbCreateConnection('test');
+    userRepository = getRepository(User, 'test');
   });
 
   after(async () => {

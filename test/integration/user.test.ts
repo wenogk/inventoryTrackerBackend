@@ -32,8 +32,8 @@ describe('Users API', () => {
   standardUser.role = 'STANDARD' as Role;
 
   before(async () => {
-    dbConnection = await dbCreateConnection();
-    userRepository = getRepository(User);
+    dbConnection = await dbCreateConnection('test');
+    userRepository = getRepository(User, 'test');
   });
 
   after(async () => {
