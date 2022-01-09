@@ -5,7 +5,7 @@ import { Item, Categories } from 'typeorm/entities/items/Item';
 import { CustomError } from 'utils/response/custom-error/CustomError';
 
 export const create = async (req: Request, res: Response, next: NextFunction) => {
-  const { sku, name, category } = req.body;
+  const { sku, name, category, inventory } = req.body;
 
   const itemRepository = getRepository(Item);
   try {
@@ -21,8 +21,9 @@ export const create = async (req: Request, res: Response, next: NextFunction) =>
     try {
       const newItem = new Item();
       newItem.sku = sku;
-      newItem.category = Categories.GENERAL;
+      newItem.category = category as Categories;
       newItem.name = name;
+      newItem.inventory = Number(inventory);
       await itemRepository.save(newItem);
 
       res.customSuccess(200, 'Item successfully created.');

@@ -29,6 +29,11 @@ export class Item {
   })
   category: Categories;
 
+  @Column({
+    default: 0,
+  })
+  inventory: number;
+
   @Column()
   @CreateDateColumn()
   created_at: Date;
