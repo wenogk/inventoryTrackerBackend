@@ -11,7 +11,6 @@ import morgan from 'morgan';
 
 import './utils/response/customSuccess';
 import { errorHandler } from './middleware/errorHandler';
-import { getLanguage } from './middleware/getLanguage';
 import routes from './routes';
 import { dbCreateConnection } from './typeorm/dbCreateConnection';
 
@@ -20,7 +19,6 @@ app.use(cors());
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(getLanguage);
 
 try {
   const accessLogStream = fs.createWriteStream(path.join(__dirname, '../log/access.log'), {
