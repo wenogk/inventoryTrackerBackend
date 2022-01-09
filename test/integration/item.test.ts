@@ -67,8 +67,9 @@ describe('Items API', () => {
     it('should create a new item', async () => {
       const newItemObj = {
         name: 'Pencil box',
-        sku: 'SK098648',
+        sku: 'SK098641',
         category: 'EDUCATION',
+        inventory: 25,
       };
       const res = await chai.request(SERVER_URL).post('/v1/items').send(newItemObj);
       expect(res.status).to.equal(200);
@@ -81,6 +82,24 @@ describe('Items API', () => {
       expect(containsPartialObj(res2.body.data, newItemObj)).to.be.true;
 
       await itemRepository.delete({ sku: newItemObj.sku });
+    });
+  });
+
+  describe('PUT /v1/items/:sku', () => {
+    it('should edit an existing item', async () => {
+      const editObj = {
+        name: 'Cat Food',
+        inventory: 7,
+      };
+      const res = await chai.request(SERVER_URL).put(`/v1/items/${newItem.sku}`).send(editObj);
+      expect(res.status).to.equal(200);
+      expect(res.body.message).to.equal('Item successfully edited.');
+
+      const res2 = await chai.request(SERVER_URL).get('/v1/items');
+      expect(res2.status).to.equal(200);
+      expect(res2.body.message).to.equal('List of items.');
+      expect(res2.body.data).to.be.an('array').that.is.not.empty;
+      expect(containsPartialObj(res2.body.data, { ...editObj, sku: newItem.sku })).to.be.true;
     });
   });
 });
