@@ -102,6 +102,21 @@ describe('Items API', () => {
       expect(containsPartialObj(res2.body.data, { ...editObj, sku: newItem.sku })).to.be.true;
     });
   });
+
+  describe('DELETE /v1/items/:sku', () => {
+    it('should create a new item', async () => {
+      const res = await chai.request(SERVER_URL).delete(`/v1/items/${newItem.sku}`);
+      expect(res.status).to.equal(200);
+      expect(res.body.message).to.equal('Item successfully deleted.');
+      expect(res.body.data.sku).to.equal(newItem.sku);
+
+      const res2 = await chai.request(SERVER_URL).get('/v1/items');
+      expect(res2.status).to.equal(200);
+      expect(res2.body.message).to.equal('List of items.');
+      expect(res2.body.data).to.be.an('array').that.is.not.empty;
+      expect(containsPartialObj(res2.body.data, { name: newItem.name, sku: newItem.sku })).to.be.false;
+    });
+  });
 });
 
 function containsPartialObj(arr, obj) {
