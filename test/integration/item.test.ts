@@ -93,6 +93,42 @@ describe('Items API', () => {
       expect(res.status).to.equal(400);
       expect(res.body.errorMessage).to.equal('Item SKU already exists');
     });
+
+    it('should not create item if category invalid', async () => {
+      const newItemObj = {
+        name: 'Pencil box',
+        sku: 'SK9876',
+        category: 'RANDOM_CATEGORY',
+        inventory: 25,
+      };
+      const res = await chai.request(SERVER_URL).post('/v1/items').send(newItemObj);
+      expect(res.status).to.equal(400);
+      expect(res.body.errorMessage).to.equal('Item creation validation error');
+    });
+
+    it('should not create item if name length invalid', async () => {
+      const newItemObj = {
+        name: 'k',
+        sku: 'SK9876',
+        category: 'GENERAL',
+        inventory: 25,
+      };
+      const res = await chai.request(SERVER_URL).post('/v1/items').send(newItemObj);
+      expect(res.status).to.equal(400);
+      expect(res.body.errorMessage).to.equal('Item creation validation error');
+    });
+
+    it('should not create item if inventory not numeric', async () => {
+      const newItemObj = {
+        name: 'Table',
+        sku: 'SK9876',
+        category: 'GENERAL',
+        inventory: 'NOT A NUMBER',
+      };
+      const res = await chai.request(SERVER_URL).post('/v1/items').send(newItemObj);
+      expect(res.status).to.equal(400);
+      expect(res.body.errorMessage).to.equal('Item creation validation error');
+    });
   });
 
   describe('PUT /v1/items/:sku', () => {

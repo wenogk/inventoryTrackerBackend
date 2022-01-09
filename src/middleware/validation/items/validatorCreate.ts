@@ -14,6 +14,7 @@ export const validatorCreateItem = (req: Request, res: Response, next: NextFunct
   sku = !sku ? '' : sku;
   category = !category ? '' : category;
   inventory = !inventory ? '' : inventory;
+  inventory = String(inventory);
 
   if (!validator.isLength(name, { min: 3, max: 25 })) {
     errorsValidation.push({ name: 'Name is invalid' });
