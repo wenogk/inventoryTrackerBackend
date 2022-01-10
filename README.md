@@ -1,10 +1,5 @@
-# Express / TypeScript / TypeORM RESTful API boilerplate
-
-![Heisenberg](heisenberg.jpg)
-
-[![CI][build-badge]][build-url]
-[![TypeScript][typescript-badge]][typescript-url]
-[![prettier][prettier-badge]][prettier-url]
+# Inventory Tracker App
+### Shopify Backend Developer Intern Challenge - Summer 2022
 
 Minimal boilerplate for building RESTful APIs with JWT authentication and role based authorization using Express, TypeScript, TypeORM, Postgres & Docker with focus on best practices and painless developer experience.
 
@@ -13,21 +8,31 @@ Minimal boilerplate for building RESTful APIs with JWT authentication and role b
 - [Node v16+](https://nodejs.org/)
 - [Docker](https://www.docker.com/)
 
-## Running
+## Quick start
+### Running the app
 
 _Easily set up a local development environment with single command!_
 
 - clone the repo
 - `npm run docker:dev` 🚀
 
-Visit [localhost:4000](http://localhost:4000/) or if using Postman grab [config](/postman).
+Visit [localhost:4000](http://localhost:4000/) to view the app.
 
 ### _What happened_ 💥
 
 Two docker containers are created:
 
-- one container instance with Postgres database seeded with 💊 Breaking Bad characters in `Users` table. Postgres database default credentials are `user=walter`, `password=white`, that can be modified in [.env file](./.env) (not added to .gitignore for demo purposes).
-- and one Node (v16 Alpine) container instance with running boilerplate RESTful API service.
+- one container instance with Postgres database. Postgres database default credentials are in [.env file](./.env) (not added to .gitignore for demo purposes).
+- and one Node (v16 Alpine) container instance with running RESTful API service and hosting static frontend.
+
+### Running the tests
+
+- run the app using the instructions above and run the tests in the backend docker container using the instructions below
+- `docker exec -it backend_container bash`
+  - `npm run test`
+
+Visit [localhost:4000](http://localhost:4000/) to view the app.
+
 
 ## Features:
 
@@ -44,10 +49,9 @@ Two docker containers are created:
 - Contract first REST API design:
   - never break API again with HTTP responses and requests payloads using [type definitions](./src/types/express/index.d.ts)
   - Consistent schema error [response](./src/utils/response/custom-error/types.ts). Your frontend will always know how to handle errors thrown in `try...catch` statements 💪
-- JWT authentication and role based authorization using custom middleware
 - Set local, stage or production [environmental variables](./config) with [type definitions](./src/types/ProcessEnv.d.ts)
 - Logging with [morgan](https://github.com/expressjs/morgan)
-- Unit and integration tests with [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/)
+- Integration tests with [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/)
 - Linting with [ESLint](https://eslint.org/)
 - [Prettier](https://prettier.io/) code formatter
 - Git hooks with [Husky](https://github.com/typicode/husky) and [lint-staged](https://github.com/okonet/lint-staged)
@@ -55,14 +59,9 @@ Two docker containers are created:
 - Commit messages must meet [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) format.  
   After staging changes just run `npm run commit` and get instant feedback on your commit message formatting and be prompted for required fields by [Commitizen](https://github.com/commitizen/cz-cli)
 
-## Other awesome boilerplates:
+## Attributions:
 
-Each boilerplate comes with it's own flavor of libraries and setup, check out others:
-
-- [Express and TypeORM with TypeScript](https://github.com/typeorm/typescript-express-example)
-- [Node.js, Express.js & TypeScript Boilerplate for Web Apps](https://github.com/jverhoelen/node-express-typescript-boilerplate)
-- [Express boilerplate for building RESTful APIs](https://github.com/danielfsousa/express-rest-es2017-boilerplate)
-- [A delightful way to building a RESTful API with NodeJs & TypeScript by @w3tecch](https://github.com/w3tecch/express-typescript-boilerplate)
+- [Express / TypeScript / TypeORM RESTful API boilerplate was used in this project](https://github.com/mkosir/express-typescript-typeorm-boilerplate)
 
 [build-badge]: https://github.com/mkosir/express-typescript-typeorm-boilerplate/actions/workflows/main.yml/badge.svg
 [build-url]: https://github.com/mkosir/express-typescript-typeorm-boilerplate/actions/workflows/main.yml
