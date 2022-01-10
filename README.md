@@ -16,6 +16,8 @@ _Easily set up a local development environment with single command!_
 
 Visit [localhost:4000](http://localhost:4000/) to view the app.
 
+![App Screenshot](sshot1.png)
+
 ### _What happened_ 💥
 
 Two docker containers are created:
@@ -29,8 +31,7 @@ Two docker containers are created:
 - `docker exec -it backend_container bash`
   - `npm run test`
 
-Visit [localhost:4000](http://localhost:4000/) to view the app.
-
+![App Screenshot](sshot2.png)
 
 ## Features:
 
