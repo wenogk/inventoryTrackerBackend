@@ -20,7 +20,7 @@ export const validatorCreateItem = (req: Request, res: Response, next: NextFunct
     errorsValidation.push({ name: 'Name is invalid' });
   }
 
-  if (!validator.isAlphanumeric(sku) || !validator.isLength(sku, { min: 4, max: 25 })) {
+  if (sku.indexOf(' ') >= 0 || !validator.isAlphanumeric(sku) || !validator.isLength(sku, { min: 4, max: 25 })) {
     errorsValidation.push({ sku: 'Sku field is invalid' });
   }
 

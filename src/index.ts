@@ -30,6 +30,8 @@ try {
 }
 app.use(morgan('combined'));
 
+app.use('/', express.static(__dirname + '/public'));
+
 app.use('/', routes);
 
 app.use(errorHandler);
