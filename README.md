@@ -1,8 +1,6 @@
 # Inventory Tracker App
 ### Shopify Backend Developer Intern Challenge - Summer 2022
 
-Minimal boilerplate for building RESTful APIs with JWT authentication and role based authorization using Express, TypeScript, TypeORM, Postgres & Docker with focus on best practices and painless developer experience.
-
 ## Requirements
 
 - [Node v16+](https://nodejs.org/)
