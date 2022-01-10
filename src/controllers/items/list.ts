@@ -7,7 +7,11 @@ import { CustomError } from 'utils/response/custom-error/CustomError';
 export const list = async (req: Request, res: Response, next: NextFunction) => {
   const itemRepository = getRepository(Item);
   try {
-    const items = await itemRepository.find({});
+    const items = await itemRepository.find({
+      order: {
+        id: 'DESC',
+      },
+    });
     res.customSuccess(200, 'List of items.', items);
   } catch (err) {
     const customError = new CustomError(400, 'Raw', `Can't retrieve list of items.`, null, err);
