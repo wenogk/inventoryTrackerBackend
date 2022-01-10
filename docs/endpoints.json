@@ -1,0 +1,234 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Insomnia",
+      "description": "",
+      "contact": {},
+      "version": "1.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:4000/v1",
+        "variables": {}
+      }
+    ],
+    "paths": {
+      "/items": {
+        "post": {
+          "tags": [
+            "Inventory Backend"
+          ],
+          "summary": "create item",
+          "description": "",
+          "operationId": "createitem",
+          "parameters": [],
+          "requestBody": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/createitemRequest"
+                },
+                "example": {
+                  "name": "Eraser",
+                  "sku": "SK13434",
+                  "category": "EDUCATION",
+                  "inventory": "5"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {},
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "deprecated": false,
+          "security": []
+        },
+        "get": {
+          "tags": [
+            "Inventory Backend"
+          ],
+          "summary": "list items",
+          "description": "",
+          "operationId": "listitems",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {},
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "deprecated": false,
+          "security": []
+        }
+      },
+      "/items/SK73832": {
+        "put": {
+          "tags": [
+            "Inventory Backend"
+          ],
+          "summary": "edit item",
+          "description": "",
+          "operationId": "edititem",
+          "parameters": [],
+          "requestBody": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/edititemRequest"
+                },
+                "example": {
+                  "inventory": "99"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {},
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "deprecated": false,
+          "security": []
+        }
+      },
+      "/items/SK72323323234": {
+        "delete": {
+          "tags": [
+            "Inventory Backend"
+          ],
+          "summary": "delete item",
+          "description": "",
+          "operationId": "deleteitem",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {},
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "deprecated": false,
+          "security": []
+        }
+      },
+      "/items/generateCsv": {
+        "get": {
+          "tags": [
+            "Inventory Backend"
+          ],
+          "summary": "export csv of items",
+          "description": "",
+          "operationId": "exportcsvofitems",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {},
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "deprecated": false,
+          "security": []
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "createitemRequest": {
+          "title": "createitemRequest",
+          "required": [
+            "name",
+            "sku",
+            "category",
+            "inventory"
+          ],
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "sku": {
+              "type": "string"
+            },
+            "category": {
+              "type": "string"
+            },
+            "inventory": {
+              "type": "string"
+            }
+          },
+          "example": {
+            "name": "Eraser",
+            "sku": "SK13434",
+            "category": "EDUCATION",
+            "inventory": "5"
+          }
+        },
+        "edititemRequest": {
+          "title": "edititemRequest",
+          "required": [
+            "inventory"
+          ],
+          "type": "object",
+          "properties": {
+            "inventory": {
+              "type": "string"
+            }
+          },
+          "example": {
+            "inventory": "99"
+          }
+        }
+      }
+    },
+    "security": [
+      {}
+    ],
+    "tags": [
+      {
+        "name": "Inventory Backend",
+        "description": ""
+      }
+    ]
+  }
