@@ -12,7 +12,8 @@ export const generateCsv = async (req: Request, res: Response, next: NextFunctio
     const fields = ['id', 'sku', 'name', 'category', 'inventory', 'created_at', 'updated_at'];
     json2csv(items, (err, csv) => {
       if (!err) {
-        res.attachment('inventory.csv').send(csv);
+        const timestamp = String(new Date().getTime());
+        res.attachment(`inventory-${timestamp}.csv`).send(csv);
       } else {
         const customError = new CustomError(400, 'Raw', `Can't convert json to csv.`);
         return next(customError);
