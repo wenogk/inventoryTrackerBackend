@@ -33,6 +33,9 @@ Two docker containers are created:
 
 ![App Screenshot](sshot2.png)
 
+## View Documentation of endpoints
+[Simple Swagger Generated Documentation of Endpoints](https://wenogk.github.io/inventoryTrackerBackend/swagger.html)
+
 ## Features:
 
 - Create, Remove, Update, Delete Items
