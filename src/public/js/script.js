@@ -10,6 +10,10 @@ var itemModal = new bootstrap.Modal(document.getElementById('itemModal'), {
   keyboard: false,
 });
 
+var createItemModal = new bootstrap.Modal(document.getElementById('createItemModal'), {
+  keyboard: false,
+});
+
 const getItems = async () => {
   try {
     const holder = document.getElementById('itemTableBodyHolder');
@@ -99,6 +103,47 @@ async function editModalSubmit() {
       .then(async (response) => {
         await getItems();
         itemModal.hide();
+      })
+      .catch((error) => {
+        if (error.response) {
+          if (error.response.data.errorsValidation != null) {
+            alert(error.response.data.errorMessage + ':' + JSON.stringify(error.response.data.errorsValidation));
+          }
+        }
+      });
+  } catch (error) {
+    alert(JSON.stringify(error.response.data));
+    console.error(error);
+  }
+}
+
+document.getElementById('createNewItemButtonClicked').addEventListener('click', () => {
+  document.getElementById('create-item-name').value = '';
+  document.getElementById('create-item-sku').value = '';
+  document.getElementById('create-item-inventory').value = '';
+  document.getElementById('create-item-categories').value = '';
+  createItemModal.show();
+});
+document.getElementById('createItemModalButton').addEventListener('click', createModalSubmit);
+
+async function createModalSubmit() {
+  const name = document.getElementById('create-item-name').value;
+  const sku = document.getElementById('create-item-sku').value;
+  const inventory = document.getElementById('create-item-inventory').value;
+  const category = document.getElementById('create-item-categories').value;
+
+  try {
+    const data = {
+      name: name,
+      sku: sku,
+      inventory: inventory,
+      category: category,
+    };
+    const response = axios
+      .post(`${BASE_URL}/items`, data)
+      .then(async (response) => {
+        await getItems();
+        createItemModal.hide();
       })
       .catch((error) => {
         if (error.response) {

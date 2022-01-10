@@ -54,7 +54,7 @@
         </thead>
         <tbody id="itemTableBodyHolder"></tbody>
       </table>
-      <button type="button" class="btn btn-primary pull-left">Create New Item</button>
+      <button type="button" class="btn btn-primary pull-left" id="createNewItemButtonClicked">Create New Item</button>
       <a href="/v1/items/generateCsv"
         ><button type="button" class="btn btn-success pull-right">Export Data to CSV</button></a
       >
@@ -97,6 +97,54 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <button type="button" class="btn btn-primary" id="editItemModalButton">Edit Item</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="createItemModal"
+      tabindex="-1"
+      aria-labelledby="createItemModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="createItemModalLabel">Item</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="create-item-sku" class="col-form-label">SKU:</label>
+                <input type="text" class="form-control" id="create-item-sku" />
+              </div>
+              <div class="mb-3">
+                <label for="create-item-name" class="col-form-label">Name:</label>
+                <input type="text" class="form-control" id="create-item-name" />
+              </div>
+              <div class="mb-3">
+                <label for="create-item-categories" class="col-form-label">Category:</label>
+                <select name="cars" id="create-item-categories">
+                  <option value="TECHNOLOGY">TECHNOLOGY</option>
+                  <option value="KITCHEN">KITCHEN</option>
+                  <option value="PET">PET</option>
+                  <option value="HOME">HOME</option>
+                  <option value="EDUCATION">EDUCATION</option>
+                  <option value="GENERAL">GENERAL</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="create-item-inventory" class="col-form-label">Inventory:</label>
+                <input type="text" class="form-control" id="create-item-inventory" />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="createItemModalButton">Create Item</button>
           </div>
         </div>
       </div>
