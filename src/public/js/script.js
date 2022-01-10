@@ -66,9 +66,52 @@ const deleteItem = async (sku) => {
 };
 
 const editItem = async (sku) => {
-  //alert("Edit item " + JSON.stringify(getItemFromSku(sku)))
+  const selectedItem = getItemFromSku(sku);
+  document.getElementById('itemModalLabel').innerText = 'Edit ' + selectedItem.name + ' #' + selectedItem.sku;
+  document.getElementById('item-name').value = selectedItem.name;
+  document.getElementById('item-sku').value = selectedItem.sku;
+  document.getElementById('item-sku').setAttribute('originalSku', selectedItem.sku);
+  document.getElementById('item-inventory').value = selectedItem.inventory;
+  document.getElementById('item-categories').value = selectedItem.category;
+
   itemModal.show();
 };
+
+document.getElementById('editItemModalButton').addEventListener('click', editModalSubmit);
+
+async function editModalSubmit() {
+  const name = document.getElementById('item-name').value;
+  const sku = document.getElementById('item-sku').value;
+  const originalSku = document.getElementById('item-sku').getAttribute('originalSku');
+  const inventory = document.getElementById('item-inventory').value;
+  const category = document.getElementById('item-categories').value;
+
+  try {
+    const holder = document.getElementById('itemTableBodyHolder');
+    const data = {
+      name: name,
+      sku: sku,
+      inventory: inventory,
+      category: category,
+    };
+    const response = axios
+      .put(`${BASE_URL}/items/${originalSku}`, data)
+      .then(async (response) => {
+        await getItems();
+        itemModal.hide();
+      })
+      .catch((error) => {
+        if (error.response) {
+          if (error.response.data.errorsValidation != null) {
+            alert(error.response.data.errorMessage + ':' + JSON.stringify(error.response.data.errorsValidation));
+          }
+        }
+      });
+  } catch (error) {
+    alert(JSON.stringify(error.response.data));
+    console.error(error);
+  }
+}
 
 function getItemFromSku(sku) {
   for (let item of itemData) {
