@@ -7,14 +7,14 @@ import { ErrorValidation } from 'utils/response/custom-error/types';
 import { Categories } from '../../../typeorm/entities/items/Item';
 
 export const validatorEditItem = (req: Request, res: Response, next: NextFunction) => {
-  let { name, sku, category, inventory } = req.body;
+  let { name, sku, category, quantity } = req.body;
   const errorsValidation: ErrorValidation[] = [];
 
   name = !name ? '' : name;
   sku = !sku ? '' : sku;
   category = !category ? '' : category;
-  inventory = !inventory ? '' : inventory;
-  inventory = String(inventory);
+  quantity = !quantity ? '' : quantity;
+  quantity = String(quantity);
 
   if (!validator.isEmpty(name) && !validator.isLength(name, { min: 3, max: 25 })) {
     errorsValidation.push({ name: 'Name is invalid' });
@@ -27,8 +27,8 @@ export const validatorEditItem = (req: Request, res: Response, next: NextFunctio
     errorsValidation.push({ sku: 'Sku field is invalid' });
   }
 
-  if (!validator.isEmpty(inventory) && !validator.isNumeric(inventory)) {
-    errorsValidation.push({ inventory: 'Inventory field is invalid (numeric required)' });
+  if (!validator.isEmpty(quantity) && (!validator.isNumeric(quantity) || quantity < 0)) {
+    errorsValidation.push({ quantity: 'Quantity field is invalid (positive number required)' });
   }
 
   const possibleCategories = Object.values(Categories);

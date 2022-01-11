@@ -8,8 +8,12 @@ import { CustomError } from 'utils/response/custom-error/CustomError';
 export const generateCsv = async (req: Request, res: Response, next: NextFunction) => {
   const itemRepository = getRepository(Item);
   try {
-    const items = await itemRepository.find({});
-    const fields = ['id', 'sku', 'name', 'category', 'inventory', 'created_at', 'updated_at'];
+    const items = await itemRepository.find({
+      order: {
+        id: 'DESC',
+      },
+    });
+    const fields = ['id', 'sku', 'name', 'category', 'quantity', 'created_at', 'updated_at'];
     json2csv(items, (err, csv) => {
       if (!err) {
         const timestamp = String(new Date().getTime());

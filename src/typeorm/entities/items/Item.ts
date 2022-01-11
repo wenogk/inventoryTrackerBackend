@@ -32,7 +32,7 @@ export class Item {
   @Column({
     default: 0,
   })
-  inventory: number;
+  quantity: number;
 
   @Column()
   @CreateDateColumn()

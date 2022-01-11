@@ -6,7 +6,7 @@ import { CustomError } from 'utils/response/custom-error/CustomError';
 
 export const edit = async (req: Request, res: Response, next: NextFunction) => {
   const skuToEdit = req.params.sku;
-  const { sku, category, name, inventory } = req.body;
+  const { sku, category, name, quantity } = req.body;
 
   const itemRepository = getRepository(Item);
   try {
@@ -20,7 +20,7 @@ export const edit = async (req: Request, res: Response, next: NextFunction) => {
     item.sku = sku;
     item.name = name;
     item.category = category as Categories;
-    item.inventory = Number(inventory);
+    item.quantity = Number(quantity);
 
     try {
       await itemRepository.save(item);
