@@ -75,7 +75,7 @@ const editItem = async (sku) => {
   document.getElementById('item-name').value = selectedItem.name;
   document.getElementById('item-sku').value = selectedItem.sku;
   document.getElementById('item-sku').setAttribute('originalSku', selectedItem.sku);
-  document.getElementById('item-inventory').value = selectedItem.inventory;
+  document.getElementById('item-inventory').value = selectedItem.quantity;
   document.getElementById('item-categories').value = selectedItem.category;
 
   itemModal.show();
