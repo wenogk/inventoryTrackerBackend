@@ -67,7 +67,7 @@ describe('Items API', () => {
         name: 'Pencil box',
         sku: 'SK098641',
         category: 'EDUCATION',
-        inventory: 25,
+        quantity: 25,
       };
       const res = await chai.request(SERVER_URL).post('/v1/items').send(newItemObj);
       expect(res.status).to.equal(200);
@@ -87,7 +87,7 @@ describe('Items API', () => {
         name: 'Pencil box',
         sku: newItem.sku,
         category: 'EDUCATION',
-        inventory: 25,
+        quantity: 25,
       };
       const res = await chai.request(SERVER_URL).post('/v1/items').send(newItemObj);
       expect(res.status).to.equal(400);
@@ -99,7 +99,7 @@ describe('Items API', () => {
         name: 'Pencil box',
         sku: 'SK9876',
         category: 'RANDOM_CATEGORY',
-        inventory: 25,
+        quantity: 25,
       };
       const res = await chai.request(SERVER_URL).post('/v1/items').send(newItemObj);
       expect(res.status).to.equal(400);
@@ -111,19 +111,31 @@ describe('Items API', () => {
         name: 'k',
         sku: 'SK9876',
         category: 'GENERAL',
-        inventory: 25,
+        quantity: 25,
       };
       const res = await chai.request(SERVER_URL).post('/v1/items').send(newItemObj);
       expect(res.status).to.equal(400);
       expect(res.body.errorMessage).to.equal('Item creation validation error');
     });
 
-    it('should not create item if inventory not numeric', async () => {
+    it('should not create item if quantity not numeric', async () => {
       const newItemObj = {
         name: 'Table',
         sku: 'SK9876',
         category: 'GENERAL',
-        inventory: 'NOT A NUMBER',
+        quantity: 'NOT A NUMBER',
+      };
+      const res = await chai.request(SERVER_URL).post('/v1/items').send(newItemObj);
+      expect(res.status).to.equal(400);
+      expect(res.body.errorMessage).to.equal('Item creation validation error');
+    });
+
+    it('should not create item if quantity is less than zero', async () => {
+      const newItemObj = {
+        name: 'Table',
+        sku: 'SK9876',
+        category: 'GENERAL',
+        quantity: -99,
       };
       const res = await chai.request(SERVER_URL).post('/v1/items').send(newItemObj);
       expect(res.status).to.equal(400);
@@ -135,7 +147,7 @@ describe('Items API', () => {
     it('should edit an existing item', async () => {
       const editObj = {
         name: 'Cat Food',
-        inventory: 7,
+        quantity: 7,
       };
       const res = await chai.request(SERVER_URL).put(`/v1/items/${newItem.sku}`).send(editObj);
       expect(res.status).to.equal(200);
@@ -151,7 +163,7 @@ describe('Items API', () => {
     it('should not be able to edit an item that does not exist', async () => {
       const editObj = {
         name: 'Cat Food',
-        inventory: 7,
+        quantity: 7,
       };
       const res = await chai.request(SERVER_URL).put(`/v1/items/DOESNOTEXIST1234`).send(editObj);
       expect(res.status).to.equal(404);
