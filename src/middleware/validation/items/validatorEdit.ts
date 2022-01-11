@@ -21,9 +21,8 @@ export const validatorEditItem = (req: Request, res: Response, next: NextFunctio
   }
 
   if (
-    (!validator.isEmpty(sku) && sku.indexOf(' ') >= 0) ||
-    !validator.isAlphanumeric(sku) ||
-    !validator.isLength(sku, { min: 4, max: 25 })
+    !validator.isEmpty(sku) &&
+    (sku.indexOf(' ') >= 0 || !validator.isAlphanumeric(sku) || !validator.isLength(sku, { min: 4, max: 25 }))
   ) {
     errorsValidation.push({ sku: 'Sku field is invalid' });
   }
