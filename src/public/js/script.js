@@ -33,7 +33,7 @@ const getItems = async () => {
             <td>${item.sku}</td>
             <td>${item.name}</td>
             <td>${item.category}</td>
-            <td>${item.inventory}</td>
+            <td>${item.quantity}</td>
             <td>${item.created_at}</td>
             <td>${item.updated_at}</td>
             <td><button type="button" class="btn btn-primary itemActionButton" actionType="EDIT" skuVal="${item.sku}">Edit</button></td>
@@ -95,7 +95,7 @@ async function editModalSubmit() {
     const data = {
       name: name,
       sku: sku,
-      inventory: inventory,
+      quantity: inventory,
       category: category,
     };
     const response = axios
@@ -136,7 +136,7 @@ async function createModalSubmit() {
     const data = {
       name: name,
       sku: sku,
-      inventory: inventory,
+      quantity: inventory,
       category: category,
     };
     const response = axios
