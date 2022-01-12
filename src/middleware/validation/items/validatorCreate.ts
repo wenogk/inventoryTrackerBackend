@@ -17,11 +17,11 @@ export const validatorCreateItem = (req: Request, res: Response, next: NextFunct
   quantity = String(quantity);
 
   if (!validator.isLength(name, { min: 3, max: 25 })) {
-    errorsValidation.push({ name: 'Name is invalid' });
+    errorsValidation.push({ name: 'Name is invalid (length [3,25])' });
   }
 
   if (sku.indexOf(' ') >= 0 || !validator.isAlphanumeric(sku) || !validator.isLength(sku, { min: 4, max: 25 })) {
-    errorsValidation.push({ sku: 'Sku field is invalid' });
+    errorsValidation.push({ sku: 'Sku field is invalid (alphanumeric with no spaces and length [4,25])' });
   }
 
   if (!validator.isNumeric(quantity) || quantity < 0) {
