@@ -39,8 +39,10 @@ Two docker containers are created:
 
 ## Features:
 
-- Create, Remove, Update, Delete Items
+- Create, Read, Update, Delete Items
 - Generate CSV of items with one click of a button
+
+## Technical details and features 
 - [Express](https://github.com/expressjs/express) framework
 - [TypeScript v4](https://github.com/microsoft/TypeScript) codebase
 - [TypeORM](https://typeorm.io/) using Data Mapper pattern
