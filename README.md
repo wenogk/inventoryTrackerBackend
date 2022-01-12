@@ -28,7 +28,7 @@ Two docker containers are created:
 
 ### Running the tests
 
-- run the app using the instructions above and run the tests in the backend docker container using the instructions below
+- run the app using the instructions above and run the tests in the backend docker container using the commands below
 - `docker exec -it backend_container bash`
   - `npm run test`
 
