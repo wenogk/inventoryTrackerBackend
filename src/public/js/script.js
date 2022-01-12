@@ -107,7 +107,14 @@ async function editModalSubmit() {
       .catch((error) => {
         if (error.response) {
           if (error.response.data.errorsValidation != null) {
-            alert(error.response.data.errorMessage + ':' + JSON.stringify(error.response.data.errorsValidation));
+            alert(
+              'Backend reply: ' +
+                error.response.data.errorMessage +
+                ':' +
+                JSON.stringify(error.response.data.errorsValidation),
+            );
+          } else {
+            alert('Backend reply: ' + JSON.stringify(error.response.data));
           }
         }
       });
@@ -148,7 +155,14 @@ async function createModalSubmit() {
       .catch((error) => {
         if (error.response) {
           if (error.response.data.errorsValidation != null) {
-            alert(error.response.data.errorMessage + ':' + JSON.stringify(error.response.data.errorsValidation));
+            alert(
+              'Backend reply: ' +
+                error.response.data.errorMessage +
+                ':' +
+                JSON.stringify(error.response.data.errorsValidation),
+            );
+          } else {
+            alert('Backend reply: ' + JSON.stringify(error.response.data));
           }
         }
       });
