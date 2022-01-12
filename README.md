@@ -28,19 +28,19 @@ Two docker containers are created:
 
 ### Running the tests
 
-- run the app using the instructions above and run the tests in the backend docker container using the instructions below
+- run the app using the instructions above and run the tests in the backend docker container using the commands below
 - `docker exec -it backend_container bash`
   - `npm run test`
 
 ![App Screenshot](sshot2.png)
 
-## View Documentation of endpoints
-[Simple Swagger Generated Documentation of Endpoints](https://wenogk.github.io/inventoryTrackerBackend/swagger.html)
-
 ## Features:
 
 - Create, Read, Update, Delete Items
 - Generate CSV of items with one click of a button
+
+## View Documentation of endpoints
+[Simple Swagger Generated Documentation of Endpoints](https://wenogk.github.io/inventoryTrackerBackend/swagger.html)
 
 ## Technical details and features 
 - [Express](https://github.com/expressjs/express) framework
