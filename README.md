@@ -34,13 +34,13 @@ Two docker containers are created:
 
 ![App Screenshot](sshot2.png)
 
-## View Documentation of endpoints
-[Simple Swagger Generated Documentation of Endpoints](https://wenogk.github.io/inventoryTrackerBackend/swagger.html)
-
 ## Features:
 
 - Create, Read, Update, Delete Items
 - Generate CSV of items with one click of a button
+
+## View Documentation of endpoints
+[Simple Swagger Generated Documentation of Endpoints](https://wenogk.github.io/inventoryTrackerBackend/swagger.html)
 
 ## Technical details and features 
 - [Express](https://github.com/expressjs/express) framework
