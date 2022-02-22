@@ -50,9 +50,6 @@ Two docker containers are created:
   - Easily start local development using [Docker Compose](https://docs.docker.com/compose/) with single command `npm run docker:dev`
   - Connect to different staging or production environments `npm run docker:[stage|prod]`
   - Ready for **microservices** development and deployment.  
-    Once API changes are made, just build and push new docker image with your favourite CI/CD tool  
-    `docker build -t <username>/api-boilerplate:latest .`  
-    `docker push <username>/api-boilerplate:latest`
 - Contract first REST API design:
   - never break API again with HTTP responses and requests payloads using [type definitions](./src/types/express/index.d.ts)
   - Consistent schema error [response](./src/utils/response/custom-error/types.ts). Your frontend will always know how to handle errors thrown in `try...catch` statements 💪
