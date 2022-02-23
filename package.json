@@ -1,7 +1,7 @@
 {
   "name": "express-typescript-typeorm-boilerplate",
   "version": "1.0.0",
-  "description": "RESTful API boilerplate with Typescript, TypeORM, ExpressJs & Mocha.",
+  "description": "Inventory Tracker Application",
   "scripts": {
     "dev": "debug=* NODE_PATH=./src ts-node-dev --respawn ./src/index.ts",
     "build": "rimraf dist && tsc",
