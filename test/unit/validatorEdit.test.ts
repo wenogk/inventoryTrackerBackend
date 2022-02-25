@@ -5,7 +5,7 @@ import { validatorEditItemFromReqBody } from '../../src/middleware/validation/it
 import { Categories } from '../../src/typeorm/entities/items/Item';
 import { ErrorValidation } from '../../src/utils/response/custom-error/types';
 
-describe('Validator for Create Item Endpoint', () => {
+describe('Validator for Edit Item Validation middleware', () => {
   describe('Edit Items Validator', () => {
     it('should not have any errors if just valid name is in the body', async () => {
       const body = {

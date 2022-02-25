@@ -5,7 +5,7 @@ import { validatorCreateItemFromReqBody } from '../../src/middleware/validation/
 import { Categories } from '../../src/typeorm/entities/items/Item';
 import { ErrorValidation } from '../../src/utils/response/custom-error/types';
 
-describe('Validator for Create Item Endpoint', () => {
+describe('Validator for Create Item Validation middleware', () => {
   describe('Create Items Validator', () => {
     it('should not have any errors if all fields are acceptable', async () => {
       const body = {
