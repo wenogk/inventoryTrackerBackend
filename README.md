@@ -45,23 +45,12 @@ Two docker containers are created:
 ## Technical details and features 
 - [Express](https://github.com/expressjs/express) framework
 - [TypeScript v4](https://github.com/microsoft/TypeScript) codebase
-- [TypeORM](https://typeorm.io/) using Data Mapper pattern
+- [TypeORM](https://typeorm.io/) with PostgreSQL
 - [Docker](https://www.docker.com/) environment:
   - Easily start local development using [Docker Compose](https://docs.docker.com/compose/) with single command `npm run docker:dev`
-  - Connect to different staging or production environments `npm run docker:[stage|prod]`
-  - Ready for **microservices** development and deployment.  
-- Contract first REST API design:
-  - never break API again with HTTP responses and requests payloads using [type definitions](./src/types/express/index.d.ts)
-  - Consistent schema error [response](./src/utils/response/custom-error/types.ts). Your frontend will always know how to handle errors thrown in `try...catch` statements 💪
-- Set local, stage or production [environmental variables](./config) with [type definitions](./src/types/ProcessEnv.d.ts)
-- Logging with [morgan](https://github.com/expressjs/morgan)
-- Integration tests with [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/)
+- Integration and Unit tests with [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/)
 - Linting with [ESLint](https://eslint.org/)
 - [Prettier](https://prettier.io/) code formatter
-- Git hooks with [Husky](https://github.com/typicode/husky) and [lint-staged](https://github.com/okonet/lint-staged)
-- Automated npm & Docker dependency updates with [Renovate](https://github.com/renovatebot/renovate) (patch version only)
-- Commit messages must meet [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) format.  
-  After staging changes just run `npm run commit` and get instant feedback on your commit message formatting and be prompted for required fields by [Commitizen](https://github.com/commitizen/cz-cli)
 
 ## Attributions:
 
