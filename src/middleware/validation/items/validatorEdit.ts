@@ -17,14 +17,14 @@ export const validatorEditItemFromReqBody = (body: any) => {
   quantity = String(quantity);
 
   if (!validator.isEmpty(name) && !validator.isLength(name, { min: 3, max: 25 })) {
-    errorsValidation.push({ name: 'Name is invalid' });
+    errorsValidation.push({ name: 'Name is invalid (length [3,25])' });
   }
 
   if (
     !validator.isEmpty(sku) &&
     (sku.indexOf(' ') >= 0 || !validator.isAlphanumeric(sku) || !validator.isLength(sku, { min: 4, max: 25 }))
   ) {
-    errorsValidation.push({ sku: 'Sku field is invalid' });
+    errorsValidation.push({ sku: 'Sku field is invalid (alphanumeric with no spaces and length [4,25])' });
   }
 
   if (!validator.isEmpty(quantity) && (!validator.isNumeric(quantity) || quantity < 0)) {
