@@ -6,8 +6,8 @@ import { ErrorValidation } from 'utils/response/custom-error/types';
 
 import { Categories } from '../../../typeorm/entities/items/Item';
 
-export const validatorEditItem = (req: Request, res: Response, next: NextFunction) => {
-  let { name, sku, category, quantity } = req.body;
+export const validatorEditItemFromReqBody = (body: any) => {
+  let { name, sku, category, quantity } = body;
   const errorsValidation: ErrorValidation[] = [];
 
   name = !name ? '' : name;
@@ -35,6 +35,12 @@ export const validatorEditItem = (req: Request, res: Response, next: NextFunctio
   if (!validator.isEmpty(category) && !possibleCategories.includes(category)) {
     errorsValidation.push({ category: `Category field is invalid. [${possibleCategories}]` });
   }
+
+  return errorsValidation;
+};
+
+export const validatorEditItem = (req: Request, res: Response, next: NextFunction) => {
+  const errorsValidation: ErrorValidation[] = validatorEditItemFromReqBody(req.body);
 
   if (errorsValidation.length !== 0) {
     const customError = new CustomError(

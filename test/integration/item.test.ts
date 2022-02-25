@@ -2,10 +2,8 @@ import 'mocha';
 import { expect } from 'chai';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import { agent as request } from 'supertest';
 import { getRepository, Connection, Repository, getConnection } from 'typeorm';
 
-import { app } from '../../src/index';
 import { dbCreateConnection } from '../../src/typeorm/dbCreateConnection';
 import { Item, Categories } from '../../src/typeorm/entities/items/Item';
 
